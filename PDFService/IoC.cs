@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Ninject;
+using Ninject.Modules;
+using PDFService.DB;
+using PDFService.DB.Injections;
+using PDFService.Services;
+using PDFService.Services.Implementation;
+using IQueryProvider = PDFService.DB.IQueryProvider;
+
+namespace PDFService
+{
+    public sealed class ServicesNInjectModule : NinjectModule
+    {
+        public override void Load()
+        {
+            Bind<IReportService>().To<ReportService>();
+            Bind<IAddressService>().To<AddressService>();
+            Bind<IContactReportPdfService>().To<ContactReportPdfService>();
+            Bind<IDepartmentService>().To<DepartmentService>();
+            Bind<IGroupingService>().To<GroupingService>();
+            Bind<IHebrewDateService>().To<HebrewDateService>();
+            Bind<ILetterService>().To<LetterService>();
+            Bind<IMailingService>().To<MailingService>();
+            Bind<IPaymentMethodService>().To<PaymentMethodService>();
+            Bind<IPdfServiceGenerator>().To<IPdfServiceGenerator>();
+            Bind<IPdfTemplateFunctionality>().To<PdfTemplateFunctionality>();
+            Bind<IReportGroupingService>().To<ReportGroupingService>();
+            Bind<ISolicitorService>().To<SolicitorService>();
+            Bind<ITransactionReportPdfService>().To<TransactionReportPdfService>();
+            Bind<ITransactionService>().To<TransactionService>();
+            Bind<IXMLService>().To<XMLService>();
+        }
+    }
+
+    public static class NinjectBulder
+    {
+        private static StandardKernel _appInjectKernel;
+        public static StandardKernel Container => _appInjectKernel ?? (_appInjectKernel = CreateInjectionContainer());
+
+
+        private static StandardKernel CreateInjectionContainer()
+        {
+            var kernel = new StandardKernel(new DalNInjectModule(),
+                new QueriesNInjectModule(),
+                new ServicesNInjectModule()
+            );
+
+            // bind the injection kernel to self with a singleton value
+            kernel.Bind<StandardKernel>()
+                .ToConstant<StandardKernel>(kernel)
+                .InSingletonScope();
+
+            kernel.Bind<IKernel>()
+                .ToConstant<StandardKernel>(kernel)
+                .InSingletonScope();
+            QueryProvider appQueryProvider = new QueryProvider(kernel);
+            kernel.Bind<IQueryProvider>()
+                .ToConstant<QueryProvider>(appQueryProvider);
+            // kernel.Bind<IReportService>().To<ReportService>();
+            return kernel;
+        }
+    }
+}

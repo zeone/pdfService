@@ -1,0 +1,302 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3AD914A9-0CCB-4D79-94FE-71994E05DDC2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PDFService</RootNamespace>
+    <AssemblyName>PDFService</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.1-beta1\lib\net45\HtmlRenderer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer.PdfSharp, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.PdfSharp.1.5.1-beta1\lib\net45\HtmlRenderer.PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MigraDoc.DocumentObjectModel, Version=1.51.5186.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc.1.51.5186-beta\lib\net20\MigraDoc.DocumentObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering, Version=1.51.5186.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc.1.51.5186-beta\lib\net20\MigraDoc.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering, Version=1.51.5186.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc.1.51.5186-beta\lib\net20\MigraDoc.RtfRendering.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.4.0.0-beta-0134\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.51.5185.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.51.5185-beta\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.51.5185.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.51.5185-beta\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartFormat, Version=2.4.2.0, Culture=neutral, PublicKeyToken=568866805651201f, processorArchitecture=MSIL">
+      <HintPath>..\packages\SmartFormat.NET.2.4.2\lib\net45\SmartFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PdfService.svc" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DB\BaseQuery.cs" />
+    <Compile Include="DB\Builder\BaseModelBuilder.cs" />
+    <Compile Include="DB\Builder\DefaultModelBuilder.cs" />
+    <Compile Include="DB\Builder\IModelBuilder.cs" />
+    <Compile Include="DB\Builder\ScalarValueBuilder.cs" />
+    <Compile Include="DB\Builder\TransactionCategoryModelBuilder.cs" />
+    <Compile Include="DB\Builder\TransactionPaymentModelBuilder.cs" />
+    <Compile Include="DB\CustomQuery.cs" />
+    <Compile Include="DB\CustomQueryConfiguration.cs" />
+    <Compile Include="DB\CustomTables\IntArrayDataRow.cs" />
+    <Compile Include="DB\CustomTables\IntArrayDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DB\CustomTables\StringArrayDataRow.cs" />
+    <Compile Include="DB\CustomTables\StringArrayDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DB\DataSelectCustomQuery.cs" />
+    <Compile Include="DB\Injections\DalNInjectModule.cs" />
+    <Compile Include="DB\IQueryProvider.cs" />
+    <Compile Include="DB\OutParameterAttribute.cs" />
+    <Compile Include="DB\PerSchemaSqlDbContext.cs" />
+    <Compile Include="DB\QueryParameterConfig.cs" />
+    <Compile Include="DB\QueryParameterEntry.cs" />
+    <Compile Include="DB\QueryProvider.cs" />
+    <Compile Include="DB\SpExecResult.cs" />
+    <Compile Include="DB\SpResultException.cs" />
+    <Compile Include="DB\SP\InsertSettingStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectAddressStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectContactReportCountStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectContactReportStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectDepartmentsStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectFieldsForLetterStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectLetterByIdStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectMailingsStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectPaymentMethodStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectPaymentsStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectPDFSettingsStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectSettingsStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectSolicitorsStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectTransactionCategoryTreeStoredProcedure.cs" />
+    <Compile Include="DB\SP\SelectTransactionsReportStoredProcedure.cs" />
+    <Compile Include="DB\StoredProcedureBase.cs" />
+    <Compile Include="DB\StoredProcedureReturningCodeQuery.cs" />
+    <Compile Include="DB\StoredProcedureReturningSelectResultQuery.cs" />
+    <Compile Include="Dto\AppSettingRecord.cs" />
+    <Compile Include="Dto\BatchLetterDto.cs" />
+    <Compile Include="Dto\CategoryDto.cs" />
+    <Compile Include="Dto\ClassDto.cs" />
+    <Compile Include="Dto\ContactReportAddress.cs" />
+    <Compile Include="Dto\ContactReportContactInfo.cs" />
+    <Compile Include="Dto\ContactReportDto.cs" />
+    <Compile Include="Dto\ContactReportResultDto.cs" />
+    <Compile Include="Dto\DepartmentDto.cs" />
+    <Compile Include="Dto\EndYearTransactions.cs" />
+    <Compile Include="Dto\FamilyAddressDto.cs" />
+    <Compile Include="Dto\FamilyDetails.cs" />
+    <Compile Include="Dto\FilterContactReport.cs" />
+    <Compile Include="Dto\FilterTransactionReport.cs" />
+    <Compile Include="Dto\GroupedContactReport.cs" />
+    <Compile Include="Dto\ItemDto.cs" />
+    <Compile Include="Dto\LetterDto.cs" />
+    <Compile Include="Dto\LetterFieldsDto.cs" />
+    <Compile Include="Dto\MailingDto.cs" />
+    <Compile Include="Dto\MatrixDTO.cs" />
+    <Compile Include="Dto\PaymentDetailsDto.cs" />
+    <Compile Include="Dto\PaymentDto.cs" />
+    <Compile Include="Dto\PaymentMethodDto.cs" />
+    <Compile Include="Dto\PaymentMethodTypeDto.cs" />
+    <Compile Include="Dto\PdfDto.cs" />
+    <Compile Include="Dto\PdfSettingDto.cs" />
+    <Compile Include="Dto\PdfSettingsBatchDto.cs" />
+    <Compile Include="Dto\ReportCountDto.cs" />
+    <Compile Include="Dto\ReportDto.cs" />
+    <Compile Include="Dto\SolicitorDto.cs" />
+    <Compile Include="Dto\SubcategoryDto.cs" />
+    <Compile Include="Dto\SubclassDto.cs" />
+    <Compile Include="Dto\TransactioMatrixSubDetails.cs" />
+    <Compile Include="Dto\TransactionDetailReportList.cs" />
+    <Compile Include="Dto\TransactionGrouped.cs" />
+    <Compile Include="Dto\TransactionMatrixColumn.cs" />
+    <Compile Include="Dto\TransactionMatrixRows.cs" />
+    <Compile Include="Dto\TransactionReportFamily.cs" />
+    <Compile Include="Dto\TransactionReportGroupedDTO.cs" />
+    <Compile Include="Dto\TransactionReportResultDto.cs" />
+    <Compile Include="Dto\TransactionsReportDto.cs" />
+    <Compile Include="Dto\TransactionsReportList.cs" />
+    <Compile Include="Dto\YahrtzeitFieldsDto.cs" />
+    <Compile Include="Enums\ClientReturnCodes.cs" />
+    <Compile Include="Enums\ContactTypes.cs" />
+    <Compile Include="Enums\DtoClientState.cs" />
+    <Compile Include="Enums\ReportColumns.cs" />
+    <Compile Include="Enums\ReportColumnsFilter.cs" />
+    <Compile Include="Enums\ReportTypes.cs" />
+    <Compile Include="Enums\SalutationType.cs" />
+    <Compile Include="Enums\Settings.cs" />
+    <Compile Include="Enums\TransactioReportColumns.cs" />
+    <Compile Include="Enums\TransFilterType.cs" />
+    <Compile Include="Enums\TransFilterView.cs" />
+    <Compile Include="Helpers\ArrayUtils.cs" />
+    <Compile Include="Helpers\DataReaderExtensions.cs" />
+    <Compile Include="Helpers\NameHelper.cs" />
+    <Compile Include="Helpers\ReflectionUtils.cs" />
+    <Compile Include="Helpers\StringAdapter.cs" />
+    <Compile Include="Helpers\StringUtils.cs" />
+    <Compile Include="Helpers\TimeHelper.cs" />
+    <Compile Include="IoC.cs" />
+    <Compile Include="JewishDate.cs" />
+    <Compile Include="PdfService.svc.cs">
+      <DependentUpon>PdfService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="IPdfService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IAddressService.cs" />
+    <Compile Include="Services\IAppService.cs" />
+    <Compile Include="Services\IAppSettingsProvider.cs" />
+    <Compile Include="Services\IContactReportPdfService.cs" />
+    <Compile Include="Services\IDepartmentService.cs" />
+    <Compile Include="Services\IGroupingService.cs" />
+    <Compile Include="Services\IHebrewDateService.cs" />
+    <Compile Include="Services\ILetterService.cs" />
+    <Compile Include="Services\IMailingService.cs" />
+    <Compile Include="Services\Implementation\AddressService.cs" />
+    <Compile Include="Services\Implementation\AppSettingsProvider.cs" />
+    <Compile Include="Services\Implementation\BaseService.cs" />
+    <Compile Include="Services\Implementation\ContactReportPdfService.cs" />
+    <Compile Include="Services\Implementation\CustomTemplatesProvider.cs" />
+    <Compile Include="Services\Implementation\DepartmentService.cs" />
+    <Compile Include="Services\Implementation\GroupingService.cs" />
+    <Compile Include="Services\Implementation\HebrewDateService.cs" />
+    <Compile Include="Services\Implementation\LetterService.cs" />
+    <Compile Include="Services\Implementation\MailingService.cs" />
+    <Compile Include="Services\Implementation\PaymentMethodService.cs" />
+    <Compile Include="Services\Implementation\PdfServiceFormats\EnvelopeFormat.cs" />
+    <Compile Include="Services\Implementation\PdfServiceFormats\LabelFormat.cs" />
+    <Compile Include="Services\Implementation\PdfServiceFormats\PdfCell.cs" />
+    <Compile Include="Services\Implementation\PdfServiceGenerator.cs" />
+    <Compile Include="Services\Implementation\PdfTemplateFunctionality.cs" />
+    <Compile Include="Services\Implementation\ReportGroupingService.cs" />
+    <Compile Include="Services\Implementation\ReportPdfService.cs" />
+    <Compile Include="Services\Implementation\ReportService.cs" />
+    <Compile Include="Services\Implementation\SolicitorService.cs" />
+    <Compile Include="Services\Implementation\TransactionReportPdfService.cs" />
+    <Compile Include="Services\Implementation\TransactionService.cs" />
+    <Compile Include="Services\Implementation\XMLService.cs" />
+    <Compile Include="Services\IPaymentMethodService.cs" />
+    <Compile Include="Services\IPdfServiceGenerator.cs" />
+    <Compile Include="Services\IPdfTemplateFunctionality.cs" />
+    <Compile Include="Services\IReportGroupingService.cs" />
+    <Compile Include="Services\IReportService.cs" />
+    <Compile Include="Services\ISolicitorService.cs" />
+    <Compile Include="Services\ITransactionReportPdfService.cs" />
+    <Compile Include="Services\ITransactionService.cs" />
+    <Compile Include="Services\IXMLService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1114</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1114/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
