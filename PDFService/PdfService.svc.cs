@@ -9,6 +9,7 @@ using Ninject;
 using Ninject.Parameters;
 using PDFService.DB.SP;
 using PDFService.Dto;
+using PDFService.Helpers;
 using PDFService.Services;
 
 namespace PDFService
@@ -23,14 +24,14 @@ namespace PDFService
         {
             _service = NinjectBulder.Container.Get<IReportService>(new ConstructorArgument("schema", request.Schema));
 
-            return _service.GetPdf(request.ReportDto, request.TranslateFunc, request.Country);
+            return _service.GetPdf(request.ReportDto, TranslateHelper.GetTranslation, request.Country);
         }
 
         public byte[] GetTransactionPdf(TransactionReportFilterRequest request)
         {
             var contactPdfService = NinjectBulder.Container.Get<IReportService>(new ConstructorArgument("schema", request.Schema));
 
-            return contactPdfService.GetPdf(request.Filter,request.TranslateFunc);
+            return contactPdfService.GetPdf(request.Filter, TranslateHelper.GetTranslation);
 
         }
 
@@ -39,13 +40,13 @@ namespace PDFService
             var contactPdfService = NinjectBulder.Container.Get<IContactReportPdfService>(new ConstructorArgument("schema", request.Schema));
 
             return contactPdfService.CreateDocument(request.ReportDto, request.Contacts, request.CountryName,
-                request.TransFunc);
+                TranslateHelper.GetTranslation);
         }
 
         public byte[] CreateTransactionReportPDf(TransactionReportPdfOnlyRequest request)
         {
             var transPdfService = NinjectBulder.Container.Get<ITransactionReportPdfService>(new ConstructorArgument("schema", request.Schema));
-            transPdfService.InitializeCollections(request.TranslateFunc, request.PaymentMethods, request.Solicitors, request.Mailings, request.Departments, request.CategoryTree);
+            transPdfService.InitializeCollections(TranslateHelper.GetTranslation, request.PaymentMethods, request.Solicitors, request.Mailings, request.Departments, request.CategoryTree);
 
             return transPdfService.CreateDocument(request.Filter, request.Grouped, request.TransactionCount);
         }

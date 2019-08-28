@@ -8,6 +8,7 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using Ninject;
+using Ninject.Parameters;
 using PDFService.Dto;
 using PDFService.Enums;
 using PDFService.Services.Implementation.PdfServiceFormats;
@@ -22,9 +23,9 @@ namespace PDFService.Services.Implementation
         private readonly IPdfServiceGenerator _pdfService;
         private static int colsRows;
 
-        public ContactReportPdfService()
+        public ContactReportPdfService(string schema)
         {
-            _pdfService = NinjectBulder.Container.Get<IPdfServiceGenerator>();
+            _pdfService = NinjectBulder.Container.Get<IPdfServiceGenerator>(new ConstructorArgument("schema", schema));
         }
 
         public byte[] CreateDocument(ReportDto reportDto, List<ContactReportResultDto> contacts, string countryName, Func<string, string> transFunc)

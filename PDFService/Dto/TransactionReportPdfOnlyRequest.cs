@@ -13,9 +13,6 @@ namespace PDFService.Dto
         public FilterTransactionReport Filter { get; set; }
 
         [DataMember]
-        public Func<string, string> TranslateFunc { get; set; }
-
-        [DataMember]
         public TransactionGrouped Grouped { get; set; }
 
         [DataMember]

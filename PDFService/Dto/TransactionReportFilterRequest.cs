@@ -16,12 +16,6 @@ namespace PDFService.Dto
         public FilterTransactionReport Filter { get; set; }
 
         /// <summary>
-        /// delegate for translation
-        /// </summary>
-        [DataMember]
-        public Func<string, string> TranslateFunc { get; set; }
-
-        /// <summary>
         /// db schema name
         /// </summary>
         [DataMember]

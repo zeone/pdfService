@@ -25,13 +25,14 @@ namespace PDFService
             Bind<ILetterService>().To<LetterService>();
             Bind<IMailingService>().To<MailingService>();
             Bind<IPaymentMethodService>().To<PaymentMethodService>();
-            Bind<IPdfServiceGenerator>().To<IPdfServiceGenerator>();
+            Bind<IPdfServiceGenerator>().To<PdfServiceGenerator>();
             Bind<IPdfTemplateFunctionality>().To<PdfTemplateFunctionality>();
             Bind<IReportGroupingService>().To<ReportGroupingService>();
             Bind<ISolicitorService>().To<SolicitorService>();
             Bind<ITransactionReportPdfService>().To<TransactionReportPdfService>();
             Bind<ITransactionService>().To<TransactionService>();
             Bind<IXMLService>().To<XMLService>();
+            Bind<IAppSettingsProvider>().To<AppSettingsProvider>();
         }
     }
 

@@ -24,11 +24,6 @@ namespace PDFService.Dto
         /// </summary>
         [DataMember]
         public string CountryName { get; set; }
-        /// <summary>
-        /// delegate for translation
-        /// </summary>
-        [DataMember]
-        public Func<string, string> TransFunc { get; set; }
 
         /// <summary>
         /// organization schema name

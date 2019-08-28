@@ -100,6 +100,17 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Global.he.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Global.he.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Global.ru.designer.cs" />
+    <Compile Include="App_GlobalResources\Global.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Global.resx</DependentUpon>
+    </Compile>
     <Compile Include="DB\BaseQuery.cs" />
     <Compile Include="DB\Builder\BaseModelBuilder.cs" />
     <Compile Include="DB\Builder\DefaultModelBuilder.cs" />
@@ -210,6 +221,7 @@
     <Compile Include="Helpers\StringAdapter.cs" />
     <Compile Include="Helpers\StringUtils.cs" />
     <Compile Include="Helpers\TimeHelper.cs" />
+    <Compile Include="Helpers\TranslateHelper.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="JewishDate.cs" />
     <Compile Include="PdfService.svc.cs">
@@ -270,6 +282,20 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Global.he.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Global.he.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Global.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Global.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Global.ru.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Global.ru.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
