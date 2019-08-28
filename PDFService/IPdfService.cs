@@ -5,43 +5,52 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using PDFService.Dto;
 
 namespace PDFService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+
     [ServiceContract]
     public interface IPdfService
     {
-
+        /// <summary>
+        /// return byte array for contact report
+        /// will execute all operations from database and do filtering operations
+        /// after that will be create a pdf file
+        /// </summary>
+        /// <returns></returns>
         [OperationContract]
-        string GetData(int value);
+        byte[] GetContactPdf(ContactReportFilterRequest request);
 
+        /// <summary>
+        /// return byte array for transaction report
+        /// will execute all operations from database and do filtering operations
+        /// after that will be create a pdf file 
+        /// </summary>
+        /// <returns></returns>
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        byte[] GetTransactionPdf(TransactionReportFilterRequest request);
 
-        // TODO: Add your service operations here
+
+        /// <summary>
+        /// Generate pdf document for contact report
+        /// take only prepared data (without using db)
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        byte[] CreateContactReportPDf(ContactReportPdfOnlyRequest request);
+
+        /// <summary>
+        /// Generate pdf document for transaction report
+        /// take only prepared data (without using db)
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [OperationContract]
+        byte[] CreateTransactionReportPDf(TransactionReportPdfOnlyRequest request);
+
     }
 
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
 
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
-    }
 }

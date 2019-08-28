@@ -9,7 +9,9 @@ namespace PDFService.Enums
     [DataContract]
     public enum ReportTypes
     {
+        [EnumMember]
         ContactReport = 1,
+        [EnumMember]
         TransactionReport = 2
     }
 }

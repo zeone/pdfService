@@ -9,7 +9,9 @@ namespace PDFService.Enums
     [DataContract]
     public enum TransFilterView
     {
+        [EnumMember]
         Details = 0,
+        [EnumMember]
         Total = 1
     }
 }

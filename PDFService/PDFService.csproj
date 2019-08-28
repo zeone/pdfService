@@ -152,6 +152,8 @@
     <Compile Include="Dto\ContactReportAddress.cs" />
     <Compile Include="Dto\ContactReportContactInfo.cs" />
     <Compile Include="Dto\ContactReportDto.cs" />
+    <Compile Include="Dto\ContactReportFilterRequest.cs" />
+    <Compile Include="Dto\ContactReportPdfOnlyRequest.cs" />
     <Compile Include="Dto\ContactReportResultDto.cs" />
     <Compile Include="Dto\DepartmentDto.cs" />
     <Compile Include="Dto\EndYearTransactions.cs" />
@@ -183,7 +185,9 @@
     <Compile Include="Dto\TransactionMatrixColumn.cs" />
     <Compile Include="Dto\TransactionMatrixRows.cs" />
     <Compile Include="Dto\TransactionReportFamily.cs" />
+    <Compile Include="Dto\TransactionReportFilterRequest.cs" />
     <Compile Include="Dto\TransactionReportGroupedDTO.cs" />
+    <Compile Include="Dto\TransactionReportPdfOnlyRequest.cs" />
     <Compile Include="Dto\TransactionReportResultDto.cs" />
     <Compile Include="Dto\TransactionsReportDto.cs" />
     <Compile Include="Dto\TransactionsReportList.cs" />

@@ -9,8 +9,11 @@ namespace PDFService.Enums
     [DataContract]
     public enum ReportColumnsFilter
     {
+        [EnumMember]
         All,
+        [EnumMember]
         With,
+        [EnumMember]
         Without
     }
 }

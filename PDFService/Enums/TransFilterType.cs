@@ -12,9 +12,13 @@ namespace PDFService.Enums
     [DataContract]
     public enum TransFilterType
     {
+        [EnumMember]
         Payment = 1,
+        [EnumMember]
         Bill = 2,
+        [EnumMember]
         Family = 3,
+        [EnumMember]
         Member = 4
     }
 }

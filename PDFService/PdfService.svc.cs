@@ -6,33 +6,48 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using Ninject;
+using Ninject.Parameters;
 using PDFService.DB.SP;
+using PDFService.Dto;
 using PDFService.Services;
 
 namespace PDFService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
+
     public class PdfService : IPdfService
     {
-        static readonly IReportService service = NinjectBulder.Container.Get<IReportService>();
-        public string GetData(int value)
+        static IReportService _service;
+
+
+        public byte[] GetContactPdf(ContactReportFilterRequest request)
         {
-           
-            return string.Format("You entered: ololo {0}", value);
+            _service = NinjectBulder.Container.Get<IReportService>(new ConstructorArgument("schema", request.Schema));
+
+            return _service.GetPdf(request.ReportDto, request.TranslateFunc, request.Country);
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public byte[] GetTransactionPdf(TransactionReportFilterRequest request)
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            var contactPdfService = NinjectBulder.Container.Get<IReportService>(new ConstructorArgument("schema", request.Schema));
+
+            return contactPdfService.GetPdf(request.Filter,request.TranslateFunc);
+
+        }
+
+        public byte[] CreateContactReportPDf(ContactReportPdfOnlyRequest request)
+        {
+            var contactPdfService = NinjectBulder.Container.Get<IContactReportPdfService>(new ConstructorArgument("schema", request.Schema));
+
+            return contactPdfService.CreateDocument(request.ReportDto, request.Contacts, request.CountryName,
+                request.TransFunc);
+        }
+
+        public byte[] CreateTransactionReportPDf(TransactionReportPdfOnlyRequest request)
+        {
+            var transPdfService = NinjectBulder.Container.Get<ITransactionReportPdfService>(new ConstructorArgument("schema", request.Schema));
+            transPdfService.InitializeCollections(request.TranslateFunc, request.PaymentMethods, request.Solicitors, request.Mailings, request.Departments, request.CategoryTree);
+
+            return transPdfService.CreateDocument(request.Filter, request.Grouped, request.TransactionCount);
         }
     }
 }
