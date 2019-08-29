@@ -33,23 +33,4 @@ namespace PDFService.DB
         BaseQuery CreateQuery(Type queryType, string schema);
     }
 
-    public interface IModelBuilder<out TModel>
-    {
-        /// <summary>
-        /// Build a model from the data reader
-        /// </summary>
-        /// <param name="dbDataReader"></param>
-        /// <returns></returns>
-        TModel Build(IDataReader dbDataReader);
-
-        /// <summary>
-        /// Build a model with default state
-        /// </summary>
-        /// <returns></returns>
-        TModel BuildDefaultModel();
-        /// <summary>
-        /// Event that is fired after the model has been built
-        /// </summary>
-        event ModelMaterializedEventHandler<TModel> ModelReady;
-    }
 }

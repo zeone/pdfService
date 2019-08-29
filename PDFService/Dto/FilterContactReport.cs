@@ -165,7 +165,6 @@ namespace PDFService.Dto
         [DataMember]
         public IEnumerable<ReportColumn> Columns { get; set; }
         ///additional info
-        [JsonIgnore]
         [DataMember]
         public string Name { get; set; }
         //// 1 - Contact 2 - transactions
