@@ -11,6 +11,7 @@ using PDFService.DB;
 using PDFService.DB.SP;
 using PDFService.Dto;
 using PDFService.Enums;
+using PDFService.Helpers;
 using IQueryProvider = PDFService.DB.IQueryProvider;
 
 namespace PDFService.Services.Implementation
@@ -91,28 +92,32 @@ namespace PDFService.Services.Implementation
         }
 
 
-        public byte[] GetPdf(FilterTransactionReport filter, Func<string, string> translateFunc)
+        public byte[] GetTransactionPdf(object filterObj)
         {
+            FilterTransactionReport filter = (FilterTransactionReport)filterObj;
             if (filter.HasFamilyCriterias)
                 GetFamiliesIds(filter);
             var transDto = FilterTransactionReport(filter);
             FillCollections(filter, ((TransFilterView)filter.view == TransFilterView.Total));
-            _groupingService.InitializeCollections(translateFunc, _paymentMethods, _solicitors, _mailings, _departments, _categoryTree);
+            _groupingService.InitializeCollections(TranslateHelper.GetTranslation, _paymentMethods, _solicitors, _mailings, _departments, _categoryTree);
             TransactionGrouped grouped = !string.Equals(filter.totalOnlyBy, "totalOnly", StringComparison.InvariantCultureIgnoreCase)
                 ? _groupingService.TransactionTotalOnlyBy(transDto, filter) : _groupingService.TotalBy(transDto, filter);
-            _transPdfService.InitializeCollections(translateFunc, _paymentMethods, _solicitors, _mailings, _departments, _categoryTree);
-            return _transPdfService.CreateDocument(filter, grouped, transDto.Transactions.Count);
+            _transPdfService.InitializeCollections(TranslateHelper.GetTranslation, _paymentMethods, _solicitors, _mailings, _departments, _categoryTree);
+            return _transPdfService.CreateDocument(new PdfDocumentDto { Filter = filter, Grouped = grouped, CountTrans = transDto.Transactions.Count });
         }
 
-        public byte[] GetPdf(ReportDto reportDto, Func<string, string> translateFunc, string country = null)
+        public byte[] GetContactPdf(object reportDtoObj)
         {
+            ReportDto reportDto = (ReportDto)reportDtoObj;
+            var country = reportDto.Country;
             var contactDto = FilterContactReport(reportDto.Criteria).OrderBy(d => d.FamilyName).ToList();
             if (reportDto.Criteria.Columns != null && reportDto.Criteria.Columns.Any(r => r.Filter != ReportColumnsFilter.All))
                 contactDto = FilterContactReportByColumns(reportDto.Criteria, contactDto.ToList()).ToList();
             if (reportDto.AdditionalPreferences.ExportType != "labels" &&
                 reportDto.AdditionalPreferences.ExportType != "envelopes")
                 country = string.Empty;
-            return _contactPdfService.CreateDocument(reportDto, contactDto.ToList(), country, translateFunc);
+
+            return _contactPdfService.CreateDocument(new PdfDocumentDto { ReportDto = reportDto, Contacts = contactDto.ToList() });
         }
 
         /// <summary>

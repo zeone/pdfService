@@ -9,7 +9,6 @@ namespace PDFService.Services
 {
     public interface IContactReportPdfService
     {
-        byte[] CreateDocument(ReportDto reportDto, List<ContactReportResultDto> contacts, string countryName,
-            Func<string, string> transFunc);
+        byte[] CreateDocument(object docObj);
     }
 }

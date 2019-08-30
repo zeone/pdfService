@@ -12,6 +12,6 @@ namespace PDFService.Services
             IEnumerable<SolicitorDto> solicitors, IEnumerable<MailingDto> mailings,
             IEnumerable<DepartmentDto> departments, IEnumerable<CategoryDto> categoryTree);
 
-        byte[] CreateDocument(FilterTransactionReport filter, TransactionGrouped grouped, int countTrans);
+        byte[] CreateDocument(object docObj);
     }
 }

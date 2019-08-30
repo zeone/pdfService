@@ -157,6 +157,7 @@
     <Compile Include="DB\StoredProcedureReturningCodeQuery.cs" />
     <Compile Include="DB\StoredProcedureReturningSelectResultQuery.cs" />
     <Compile Include="Dto\AppSettingRecord.cs" />
+    <Compile Include="Dto\BaseFilterRequest.cs" />
     <Compile Include="Dto\BatchLetterDto.cs" />
     <Compile Include="Dto\CategoryDto.cs" />
     <Compile Include="Dto\ClassDto.cs" />
@@ -182,11 +183,14 @@
     <Compile Include="Dto\PaymentDto.cs" />
     <Compile Include="Dto\PaymentMethodDto.cs" />
     <Compile Include="Dto\PaymentMethodTypeDto.cs" />
+    <Compile Include="Dto\PdfDocumentDto.cs" />
     <Compile Include="Dto\PdfDto.cs" />
     <Compile Include="Dto\PdfSettingDto.cs" />
     <Compile Include="Dto\PdfSettingsBatchDto.cs" />
+    <Compile Include="Dto\QueueObject.cs" />
     <Compile Include="Dto\ReportCountDto.cs" />
     <Compile Include="Dto\ReportDto.cs" />
+    <Compile Include="Dto\ServiceResponse.cs" />
     <Compile Include="Dto\SolicitorDto.cs" />
     <Compile Include="Dto\SubcategoryDto.cs" />
     <Compile Include="Dto\SubclassDto.cs" />
@@ -234,6 +238,7 @@
     <Compile Include="Services\IAppSettingsProvider.cs" />
     <Compile Include="Services\IContactReportPdfService.cs" />
     <Compile Include="Services\IDepartmentService.cs" />
+    <Compile Include="Services\IExecutionService.cs" />
     <Compile Include="Services\IGroupingService.cs" />
     <Compile Include="Services\IHebrewDateService.cs" />
     <Compile Include="Services\ILetterService.cs" />
@@ -246,6 +251,7 @@
     <Compile Include="Services\Implementation\DepartmentService.cs" />
     <Compile Include="Services\Implementation\GroupingService.cs" />
     <Compile Include="Services\Implementation\HebrewDateService.cs" />
+    <Compile Include="Services\Implementation\ExecutionService.cs" />
     <Compile Include="Services\Implementation\LetterService.cs" />
     <Compile Include="Services\Implementation\MailingService.cs" />
     <Compile Include="Services\Implementation\PaymentMethodService.cs" />

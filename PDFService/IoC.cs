@@ -57,6 +57,9 @@ namespace PDFService
             kernel.Bind<IKernel>()
                 .ToConstant<StandardKernel>(kernel)
                 .InSingletonScope();
+            kernel.Bind<IExecutionService>()
+                .To<ExecutionService>()
+                .InSingletonScope();
             QueryProvider appQueryProvider = new QueryProvider(kernel);
             kernel.Bind<IQueryProvider>()
                 .ToConstant<QueryProvider>(appQueryProvider);

@@ -7,27 +7,14 @@ using System.Web;
 namespace PDFService.Dto
 {
     [DataContract]
-    public class ContactReportPdfOnlyRequest
+    public class ContactReportPdfOnlyRequest : BaseFilterRequest
     {
-        /// <summary>
-        /// prepared filters
-        /// </summary>
-        [DataMember]
-        public ReportDto ReportDto { get; set; }
+
         /// <summary>
         /// list of prepared contact info
         /// </summary>
         [DataMember]
         public List<ContactReportResultDto> Contacts { get; set; }
-        /// <summary>
-        /// organization country name
-        /// </summary>
-        [DataMember]
-        public string CountryName { get; set; }
 
-        /// <summary>
-        /// organization schema name
-        /// </summary>
-        public string Schema { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using Ninject;
 using Ninject.Parameters;
 using PDFService.Dto;
 using PDFService.Enums;
+using PDFService.Helpers;
 using PDFService.Services.Implementation.PdfServiceFormats;
 using BorderStyle = MigraDoc.DocumentObjectModel.BorderStyle;
 using Orientation = MigraDoc.DocumentObjectModel.Orientation;
@@ -28,10 +29,13 @@ namespace PDFService.Services.Implementation
             _pdfService = NinjectBulder.Container.Get<IPdfServiceGenerator>(new ConstructorArgument("schema", schema));
         }
 
-        public byte[] CreateDocument(ReportDto reportDto, List<ContactReportResultDto> contacts, string countryName, Func<string, string> transFunc)
+        public byte[] CreateDocument(object docObj)
         {
-            CountryInSettings = countryName;
-            _translator = transFunc;
+            PdfDocumentDto doc = (PdfDocumentDto) docObj;
+            var reportDto = doc.ReportDto;
+            var contacts = doc.Contacts;
+            CountryInSettings = reportDto.Country;
+            _translator = TranslateHelper.GetTranslation;
             _document = new Document { Info = { Title = reportDto.Name } };
             var cosCount = GetColCount(reportDto.Criteria);
 

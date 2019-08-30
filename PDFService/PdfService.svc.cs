@@ -17,38 +17,54 @@ namespace PDFService
 
     public class PdfService : IPdfService
     {
-        static IReportService _service;
+        static IReportService _reportService;
+        static IExecutionService _executionService = NinjectBulder.Container.Get<IExecutionService>();
 
-
-        public byte[] GetContactPdf(ContactReportFilterRequest request)
+        public void GetContactPdf(ContactReportFilterRequest request)
         {
-            _service = NinjectBulder.Container.Get<IReportService>(new ConstructorArgument("schema", request.Schema));
+            _reportService = NinjectBulder.Container.Get<IReportService>(new ConstructorArgument("schema", request.Schema));
 
-            return _service.GetPdf(request.ReportDto, TranslateHelper.GetTranslation, request.Country);
+            _executionService.AddTask($"{request.ReportQId}_{request.Schema}",
+                (object)request,  _reportService.GetContactPdf);
         }
 
-        public byte[] GetTransactionPdf(TransactionReportFilterRequest request)
+        public void GetTransactionPdf(TransactionReportFilterRequest request)
         {
             var contactPdfService = NinjectBulder.Container.Get<IReportService>(new ConstructorArgument("schema", request.Schema));
-
-            return contactPdfService.GetPdf(request.Filter, TranslateHelper.GetTranslation);
+            request.ReportDto.Country = request.CountryName;
+            _executionService.AddTask($"{request.ReportQId}_{request.Schema}",
+                (object)request, _reportService.GetTransactionPdf);
 
         }
 
-        public byte[] CreateContactReportPDf(ContactReportPdfOnlyRequest request)
+        public void CreateContactReportPDf(ContactReportPdfOnlyRequest request)
         {
             var contactPdfService = NinjectBulder.Container.Get<IContactReportPdfService>(new ConstructorArgument("schema", request.Schema));
-
-            return contactPdfService.CreateDocument(request.ReportDto, request.Contacts, request.CountryName,
-                TranslateHelper.GetTranslation);
+            request.ReportDto.Country = request.CountryName;
+            var pdfDoc = new PdfDocumentDto
+            {
+                ReportDto = request.ReportDto,
+                Contacts = request.Contacts
+            };
+            _executionService.AddTask($"{request.ReportQId}_{request.Schema}",
+                (object)request, contactPdfService.CreateDocument);
+            
         }
 
-        public byte[] CreateTransactionReportPDf(TransactionReportPdfOnlyRequest request)
+        public void CreateTransactionReportPDf(TransactionReportPdfOnlyRequest request)
         {
             var transPdfService = NinjectBulder.Container.Get<ITransactionReportPdfService>(new ConstructorArgument("schema", request.Schema));
             transPdfService.InitializeCollections(TranslateHelper.GetTranslation, request.PaymentMethods, request.Solicitors, request.Mailings, request.Departments, request.CategoryTree);
-
-            return transPdfService.CreateDocument(request.Filter, request.Grouped, request.TransactionCount);
+            request.ReportDto.Country = request.CountryName;
+            request.ReportDto.Country = request.CountryName;
+            var pdfDoc = new PdfDocumentDto
+            {
+                Filter = request.Filter,
+                Grouped = request.Grouped,
+                CountTrans = request.TransactionCount
+            };
+            _executionService.AddTask($"{request.ReportQId}_{request.Schema}",
+                (object)request, transPdfService.CreateDocument);
         }
     }
 }

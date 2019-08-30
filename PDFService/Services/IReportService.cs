@@ -9,7 +9,7 @@ namespace PDFService.Services
 {
     public interface IReportService
     {
-        byte[] GetPdf(FilterTransactionReport filter, Func<string, string> translateFunc);
-        byte[] GetPdf(ReportDto reportDto, Func<string, string> translateFunc, string country = null);
+        byte[] GetTransactionPdf(object filterObj);
+        byte[] GetContactPdf(object reportDtoObj);
     }
 }

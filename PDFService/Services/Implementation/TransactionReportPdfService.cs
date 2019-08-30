@@ -25,8 +25,12 @@ namespace PDFService.Services.Implementation
         /// <param name="mailings"></param>
         /// <param name="departments"></param>
         /// <param name="categoryTree"></param>
-        public byte[] CreateDocument(FilterTransactionReport filter, TransactionGrouped grouped, int countTrans)
+        public byte[] CreateDocument(object docObj)
         {
+            PdfDocumentDto doc = (PdfDocumentDto)docObj;
+            var filter = doc.Filter;
+            var countTrans = doc.CountTrans;
+            var grouped = doc.Grouped;
             // Create a new MigraDoc document
             _document = new Document { Info = { Title = filter.Name } };
 

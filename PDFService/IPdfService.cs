@@ -20,7 +20,7 @@ namespace PDFService
         /// </summary>
         /// <returns></returns>
         [OperationContract]
-        byte[] GetContactPdf(ContactReportFilterRequest request);
+        void GetContactPdf(ContactReportFilterRequest request);
 
         /// <summary>
         /// return byte array for transaction report
@@ -29,7 +29,7 @@ namespace PDFService
         /// </summary>
         /// <returns></returns>
         [OperationContract]
-        byte[] GetTransactionPdf(TransactionReportFilterRequest request);
+        void GetTransactionPdf(TransactionReportFilterRequest request);
 
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace PDFService
         /// </summary>
         /// <returns></returns>
         [OperationContract]
-        byte[] CreateContactReportPDf(ContactReportPdfOnlyRequest request);
+        void CreateContactReportPDf(ContactReportPdfOnlyRequest request);
 
         /// <summary>
         /// Generate pdf document for transaction report
@@ -47,7 +47,7 @@ namespace PDFService
         /// <param name="request"></param>
         /// <returns></returns>
         [OperationContract]
-        byte[] CreateTransactionReportPDf(TransactionReportPdfOnlyRequest request);
+        void CreateTransactionReportPDf(TransactionReportPdfOnlyRequest request);
 
     }
 

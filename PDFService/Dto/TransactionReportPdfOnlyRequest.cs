@@ -7,19 +7,13 @@ using System.Web;
 namespace PDFService.Dto
 {
     [DataContract]
-    public class TransactionReportPdfOnlyRequest
+    public class TransactionReportPdfOnlyRequest : BaseFilterRequest
     {
-        [DataMember]
-        public FilterTransactionReport Filter { get; set; }
-
         [DataMember]
         public TransactionGrouped Grouped { get; set; }
 
         [DataMember]
         public int TransactionCount { get; set; }
-
-        [DataMember]
-        public string Schema { get; set; }
 
         #region Collections
         [DataMember]

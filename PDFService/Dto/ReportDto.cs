@@ -47,6 +47,9 @@ namespace PDFService.Dto
             }
         }
 
+        [DataMember]
+        public string Country { get; set; }
+
         [DataContract]
         public class ExportReportPreference
         {
@@ -58,6 +61,7 @@ namespace PDFService.Dto
             public int? FamilyAddressId { get; set; }
             [DataMember]
             public int? FamilyId { get; set; }
+
         }
     }
 }
